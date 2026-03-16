@@ -1,0 +1,12 @@
+{
+  "input": {
+    "tool": "dispatch_run",
+    "params": {
+      "task": "Review this Express.js auth middleware for production readiness",
+      "code": "const jwt = require('jsonwebtoken');\n\nfunction auth(req, res, next) {\n  const token = req.headers.authorization?.split(' ')[1];\n  if (!token) return res.status(401).json({ error: 'No token' });\n  try {\n    req.user = jwt.verify(token, process.env.JWT_SECRET);\n    next();\n  } catch (e) {\n    res.status(401).json({ error: 'Invalid token' });\n  }\n}\n\nmodule.exports = auth;",
+      "context": "Node.js 18, Express 4.x"
+    }
+  },
+  "expected_behavior": "Dispatch selects security, architecture, and possibly testing agents. Output includes: JWT secret validation, rate limiting, error handling, and test coverage suggestions.",
+  "run_command": "Use dispatch_run in Cursor MCP with the above task, code, and context."
+}

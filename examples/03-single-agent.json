@@ -1,0 +1,12 @@
+{
+  "input": {
+    "tool": "dispatch_agent",
+    "params": {
+      "agent": "security",
+      "instruction": "Check for SQL injection vulnerabilities",
+      "code": "app.get('/user/:id', (req, res) => {\n  const q = `SELECT * FROM users WHERE id = ${req.params.id}`;\n  db.query(q, (err, rows) => res.json(rows));\n});"
+    }
+  },
+  "expected_behavior": "Single security agent runs. Output identifies SQL injection risk (unparameterized query) and suggests parameterized queries or prepared statements.",
+  "run_command": "Use dispatch_agent in Cursor MCP with agent=security and the above instruction/code."
+}

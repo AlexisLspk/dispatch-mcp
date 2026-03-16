@@ -1,0 +1,10 @@
+{
+  "input": {
+    "tool": "dispatch_plan",
+    "params": {
+      "task": "Audit my React component for performance and accessibility"
+    }
+  },
+  "expected_output_structure": "Execution plan for: \"Audit my React component...\"\n\nStage 1 (parallel)\n  ├── [performance] ...\n  ├── [accessibility] ...\n\nOr similar DAG with performance and accessibility agents in stage 1.",
+  "run_command": "Use dispatch_plan in Cursor MCP with the above task. No code or API calls to agents — planning only."
+}
