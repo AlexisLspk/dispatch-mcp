@@ -13,7 +13,7 @@ import { critique } from "./core/critic.js";
 import { merge } from "./core/merger.js";
 import { AGENT_REGISTRY, getAgent } from "./agents/registry.js";
 import { getTotalTokens, resetLog } from "./utils/cost-tracker.js";
-import { logger } from "./utils/logger.js";
+import { logger, colorizeBanner } from "./utils/logger.js";
 import { formatApiError } from "./utils/api-errors.js";
 import { MAX_INPUT_CHARS } from "./utils/constants.js";
 import type { RunMetadata } from "./types.js";
@@ -246,7 +246,7 @@ Available agents: ${agentNames.join(", ")}`,
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const bannerPath = join(__dirname, import.meta.url.endsWith(".ts") ? "banner.txt" : "../src/banner.txt");
 const BANNER = readFileSync(bannerPath, "utf-8");
-process.stderr.write(BANNER + "\n");
+process.stderr.write(colorizeBanner(BANNER) + "\n");
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
